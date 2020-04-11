@@ -11,42 +11,9 @@
   &__logo {
     font: 500 italic 30px 'Work Sans';
   }
-  &__menu {
-    height: 100%;
+  &__mode {
     display: flex;
-    button {
-      display: block;
-      padding: 0;
-      background: transparent;
-      outline: 0;
-      border: none;
-      cursor: pointer;
-      box-sizing: border-box;
-      position: relative;
-      padding: 0 15px;
-      transition: all .3s ease-in-out;
-      font-weight: 500;
-      color: #1f2667;
-      span {
-        display: block;
-        position: relative;
-        &::after {
-          content: "";
-          transition: all .3s ease-in-out;
-          position: absolute;
-          height: 2px;
-          width: 0;
-          background: #139cda;
-          bottom: -16px;
-          left: 0;
-        }
-      }
-      &:hover, &.selected {
-        color: #139cda;
-        span::after {
-          width: 100%;
-        }
-      }
-    }
+    align-items: center;
+    justify-content: center;
   }
 }

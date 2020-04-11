@@ -1,4 +1,3 @@
-import { Subject } from 'rxjs';
 import L, { Map } from 'leaflet';
 import _ from 'lodash';
 import { getTotalCases, numberWithCommas, extractCases } from 'utils';
@@ -33,8 +32,6 @@ interface Config {
 }
 
 class MapBuilder {
-  update$ = new Subject<any>();
-
   private map: Map;
 
   private config: Config;

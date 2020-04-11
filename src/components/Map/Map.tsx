@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import MapBuilder from 'native/MapBuilder';
+import 'leaflet/dist/leaflet.css';
 
 import './Map.scss';
 

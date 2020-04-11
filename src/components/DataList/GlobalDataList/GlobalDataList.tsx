@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Input from 'components/UI/Input';
 import { getTotalCases, extractCases } from 'utils';
+import _ from 'lodash';
 import './GlobalDataList.scss';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 interface State {
   selectedCountryName: string;
   filteredData: TransformedData[] | null;
+  searchString: string;
 }
 
 const SEARCH_MINIMUM_LENGTH = 2;
@@ -22,6 +24,7 @@ class GlobalDataList extends React.Component<Props, State> {
     this.state = {
       selectedCountryName: '',
       filteredData: props.data,
+      searchString: '',
     };
   }
 
@@ -32,6 +35,7 @@ class GlobalDataList extends React.Component<Props, State> {
   };
 
   filterData = (value: string) => {
+    this.setState({ searchString: value });
     const { data } = this.props;
     if (value.length >= SEARCH_MINIMUM_LENGTH) {
       const filteredData = data && data.filter(
@@ -71,17 +75,23 @@ class GlobalDataList extends React.Component<Props, State> {
   };
 
   render() {
-    const { filteredData } = this.state;
-    if (!filteredData) return null;
+    const { filteredData, searchString } = this.state;
+    const { data } = this.props;
+    const selectedData = searchString.length >= SEARCH_MINIMUM_LENGTH
+      && filteredData ? filteredData : data;
+
     return (
       <>
         <div className="filter-input">
           <Input
             onChange={value => this.filterData(value)}
+            value={searchString}
             placeholder="Filter"
           />
         </div>
-        {filteredData.length ? filteredData.map(country => this.getCountryDetails(country)) : (
+        {selectedData && selectedData.length ? _.map(
+          selectedData, country => this.getCountryDetails(country),
+        ) : (
           <div className="no-data">
             <div className="no-data__title">
               Country not found.

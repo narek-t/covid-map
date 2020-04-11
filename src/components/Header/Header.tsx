@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { DataContext, IDataProvider } from 'providers/data/data-provider';
-import classnames from 'classnames';
+import Switch from 'components/UI/Switch';
+import DisplayModeButtons from './DisplayModeButtons';
+
 import './Header.scss';
 
 const Header = () => {
   const { actions, state }: IDataProvider = useContext(DataContext);
 
   const { mapMode, globalDisplayMode } = state;
-  const { switchDisplayMode } = actions;
+  const { switchDisplayMode, switchMapMode } = actions;
 
   return (
     <header className="header">
@@ -15,38 +17,16 @@ const Header = () => {
         COVID-19
       </div>
       <div className="header__menu">
-        <button
-          className={classnames(
-            { selected: globalDisplayMode },
-          )}
-          onClick={() => switchDisplayMode('global')}
-        >
-          <span>Global Stats</span>
-        </button>
-        <button
-          className={classnames(
-            { selected: !globalDisplayMode },
-          )}
-          onClick={() => switchDisplayMode('usa')}
-        >
-          <span>US Stats</span>
-        </button>
+        <DisplayModeButtons
+          globalDisplayMode={globalDisplayMode}
+          switchDisplayMode={switchDisplayMode}
+        />
       </div>
       <div className="header__mode">
-        <button
-          className={classnames(
-            { selected: mapMode },
-          )}
-        >
-          Map
-        </button>
-        <button
-          className={classnames(
-            { selected: !mapMode },
-          )}
-        >
-          TimeSeries
-        </button>
+        <Switch
+          mapMode={mapMode}
+          switchMapMode={switchMapMode}
+        />
       </div>
     </header>
   );

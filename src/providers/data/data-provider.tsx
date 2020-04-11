@@ -1,7 +1,11 @@
 import React, { createContext } from 'react';
 import { getGlobalData, getUSData } from 'services/dataService';
+import { getFlagFromStorage, setFlagToStorage } from 'utils/localStorage';
+import { transformGlobalData } from 'utils/util';
 
 export const DataContext = createContext<ProviderInterface>(null);
+const GLOBAL_MODE = 'global';
+const MAP_MODE = 'map';
 
 interface State {
   mapMode: boolean;
@@ -23,8 +27,8 @@ interface Props {
 
 class DataProvider extends React.PureComponent<Props, State> {
   state: State = {
-    mapMode: true,
-    globalDisplayMode: true,
+    mapMode: getFlagFromStorage(MAP_MODE),
+    globalDisplayMode: getFlagFromStorage(GLOBAL_MODE),
     globalData: null,
     usData: null,
     isLoading: true,
@@ -33,26 +37,27 @@ class DataProvider extends React.PureComponent<Props, State> {
 
   async componentDidMount() {
     try {
-      const [globalData, usData] = await Promise.all([getGlobalData(), getUSData()]);
+      const [rawGlobalData, rawUsData] = await Promise.all([getGlobalData(), getUSData()]);
+      const globalData = transformGlobalData(rawGlobalData.data, 'name');
+      const usData = transformGlobalData(rawUsData.data, 'name');
       this.setState({ globalData, usData, isLoading: false });
     } catch (error) {
       this.setState({ dataError: error, isLoading: false });
     }
   }
 
-  switchMapMode = () => {
-    this.setState(prevState => ({
-      mapMode: !prevState.mapMode,
-    }));
+  switchMapMode = (timeSeriesMode: boolean) => {
+    this.setState({ mapMode: !timeSeriesMode });
+    setFlagToStorage(MAP_MODE, !timeSeriesMode);
   };
 
-  switchDisplayMode = (mode: string) => this.setState({ globalDisplayMode: mode === 'global' });
+  switchDisplayMode = (mode: string) => {
+    this.setState({ globalDisplayMode: mode === GLOBAL_MODE });
+    setFlagToStorage(GLOBAL_MODE, mode === GLOBAL_MODE);
+  };
 
   render() {
     const { children } = this.props;
-    const { globalData, usData, isLoading } = this.state;
-    if (!globalData || !usData || isLoading) return null;
-
     return (
       <DataContext.Provider
         value={{

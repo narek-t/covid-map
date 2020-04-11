@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { DataContext, IDataProvider } from 'providers/data/data-provider';
 import Sidebar from 'components/Sidebar';
 import Map from 'components/Map';
+import Loader from 'components/UI/Loader';
 import './Home.scss';
 
 const HomePage = () => {
@@ -19,7 +20,8 @@ const HomePage = () => {
   ] = useState(null);
   const toggleSidebarView = () => toggleSidebar(!sidebarOpened);
   const data = globalDisplayMode ? globalData : usData;
-  if (isLoading) return null;
+
+  if (isLoading) return <Loader />;
 
   return (
     <div
