@@ -1,0 +1,12 @@
+.select {
+  display: block;
+  height: 40px;
+  width: 100%;
+  background: transparent;
+  outline: 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  &-wrapper {
+    padding: 10px 20px;
+  }
+}

@@ -5,12 +5,16 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+import DataProvider from 'providers/data';
+import { HomePage } from 'pages';
+import Header from 'components/Header';
 import './App.scss';
+
 
 const routes = (
   <Switch>
     <Route path="/" exact>
-      Index Page
+      <HomePage />
     </Route>
     <Route path="/page1">
       Page 1
@@ -20,9 +24,14 @@ const routes = (
 );
 
 const App = () => (
-  <Router>
-    <main className="app-wrapper">{routes}</main>
-  </Router>
+  <DataProvider>
+    <Router>
+      <div className="app-wrapper">
+        <Header />
+        <main className="content">{routes}</main>
+      </div>
+    </Router>
+  </DataProvider>
 );
 
 export default App;

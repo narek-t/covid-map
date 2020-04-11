@@ -1,0 +1,50 @@
+.data-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  &__name {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+  &__stats {
+    div {
+      margin-top: 4px;
+      font-size: 14px;
+    }
+    &-confirmed {
+      color: #000;
+    }
+    &-deaths {
+      color: red;
+    }
+    &-recovered {
+      color: green;
+    }
+  }
+  &:hover, &.selected {
+    background: #f5f6f7;
+  }
+}
+
+.filter-input {
+  padding: 10px 20px;
+}
+
+.no-data {
+  padding: 0 20px;
+  &__title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  ul {
+    margin: 10px 0 0;
+    padding: 0;
+    list-style-position: inside;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,21 @@
+.sidebar {
+  width: 280px;
+  background: #fff;
+  box-shadow: 1px 0 5px rgba(0, 0, 0, .1);
+  position: relative;
+  transition: all .3s ease-in-out;
+  position: absolute;
+  left: -0;
+  top: 0;
+  height: 100%;
+  transform: translateX(-280px);
+  z-index: 999;
+  &__inner {
+    max-height: 100%;
+    overflow-y: auto;
+    position: relative;
+  }
+  &.opened {
+    transform: translateX(0);
+  }
+}

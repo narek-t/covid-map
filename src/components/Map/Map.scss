@@ -1,0 +1,13 @@
+.map {
+  height: 100%;
+  &.sidebar-opened {
+    margin-left: 280px;
+  }
+  .leaflet-container {
+    height: 100%;
+  }
+  .popup-country-name {
+    font-size: 18px;
+    font-weight: 500;;
+  }
+}

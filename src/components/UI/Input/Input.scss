@@ -1,0 +1,30 @@
+.input {
+  height: 40px;
+  display: block;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+  outline: 0;
+  border: 1px solid #ccc;
+  &-wrapper {
+    position: relative;
+  }
+  &-clear {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    padding: 0;
+    outline: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    svg {
+      width: 14px;
+      height: 14px;
+      margin-top: 4px;
+    }
+  }
+}

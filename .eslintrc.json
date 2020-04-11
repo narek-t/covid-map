@@ -13,20 +13,15 @@
   "rules": {
     "react/jsx-filename-extension": [0],
     "react/jsx-one-expression-per-line": [0],
+    "react/state-in-constructor": [0],
+    "react/no-unused-state": [0],
+    "react/button-has-type": [0],
+    "react/prop-types": [0],
     "@typescript-eslint/explicit-function-return-type": "off",
     "no-else-return": ["error", { "allowElseIf": false }],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^$" }],
-    "@typescript-eslint/no-magic-numbers": [
-      "error",
-      {
-        "ignoreNumericLiteralTypes": true,
-        "ignoreEnums": true,
-        "enforceConst": true,
-        "ignoreReadonlyClassProperties": true,
-        "ignore": [0, 24, 60, 1000]
-      }
-    ],
+    "@typescript-eslint/no-magic-numbers": [0],
     "arrow-parens": ["warn", "as-needed"],
     "prefer-arrow-callback": "error",
     "prefer-destructuring": ["error", {
@@ -42,7 +37,9 @@
         "singleReturnOnly": false,
         "classPropertiesAllowed": false
       }
-    ]
+    ],
+    "jsx-a11y/click-events-have-key-events": [0],
+    "jsx-a11y/no-static-element-interactions": [0]
   },
   "settings": {
     "import/extensions": [
@@ -59,6 +56,7 @@
     },
     "import/resolver": {
       "node": {
+        "paths": ["src"],
         "extensions": [
           ".js",
           ".jsx",
