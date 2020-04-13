@@ -1,0 +1,9 @@
+.timeseries__header {
+  max-width: 500px;
+  margin: 0 auto 50px;
+  &-checkboxes {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+  }
+}

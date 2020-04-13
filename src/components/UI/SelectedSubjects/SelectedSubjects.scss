@@ -1,0 +1,33 @@
+.selected-subjects {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selected-subject {
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  position: relative;
+  font-size: 13px;
+  &__close {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background: #139cda;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    svg {
+      width: 8px;
+      fill: #fff;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.select-dropdown {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  z-index: 10;
+  max-height: 300px;
+  overflow-y: auto;
+  &-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    &:hover {
+      background: rgba(204, 204, 204, .2);
+    }
+    &.not-found {
+      cursor: auto;
+      &:hover {
+        background: #fff;
+      }
+    }
+  }
+}
+.select-subject {
+  position: relative;
+}

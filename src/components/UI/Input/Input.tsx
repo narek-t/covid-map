@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { ReactComponent as CloseIcon } from 'assets/close.svg';
 import './Input.scss';
@@ -8,30 +8,17 @@ interface Props {
   placeholder?: string;
   onChange: (value: string) => void;
   className?: string;
-  value?: string;
+  value: string;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
-const Input = (props: Props) => {
+const Input = React.forwardRef((props: Props, ref: any) => {
   const {
-    type, placeholder, onChange, className, value,
+    type, placeholder, onChange, className, value, onBlur, onFocus,
   } = props;
-  const [inputState, changeInputValue] = useState('');
 
-  const onInputChange = useCallback(onChange, []);
-
-  useEffect(() => {
-    onInputChange(inputState);
-  }, [inputState, onInputChange]);
-
-  useEffect(() => {
-    changeInputValue(value || '');
-  }, [value]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeInputValue(e.target.value);
-  };
-
-  const clearInput = () => changeInputValue('');
+  const clearInput = () => onChange('');
 
   return (
     <div className="input-wrapper">
@@ -41,17 +28,20 @@ const Input = (props: Props) => {
           'input',
         )}
         type={type || 'text'}
-        value={inputState}
-        onChange={e => handleChange(e)}
+        value={value}
+        onChange={e => onChange(e.target.value)}
         placeholder={placeholder || ''}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        ref={ref}
       />
-      {inputState && (
+      {value && (
         <button className="input-clear" onClick={clearInput}>
           <CloseIcon />
         </button>
       )}
     </div>
   );
-};
+});
 
 export default Input;
