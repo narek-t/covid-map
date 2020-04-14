@@ -1,7 +1,6 @@
 import L, { Map } from 'leaflet';
 import _ from 'lodash';
 import { getTotalCases, numberWithCommas, extractCases } from 'utils';
-import './MapBuilder.scss';
 
 const MAP_DEFAULT_LAT = 39.3999;
 const MAP_DEFAULT_LNG = -8.2245;

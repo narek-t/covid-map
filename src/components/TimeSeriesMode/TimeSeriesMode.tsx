@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import classnames from 'classnames';
 import { DataContext, IDataProvider } from 'providers/data/data-provider';
+import Chart from 'components/Chart';
 import Filter from './Filter';
 import './TimeSeriesMode.scss';
 
@@ -12,9 +13,9 @@ const TimeSeriesMode = () => {
     usData,
   } = state;
 
-  const [visibleWorldStat, setVisibleWorldStat] = useState(true);
   const [selectedCountries, setSelectedCountries] = useState<TransformedData[]>([]);
 
+  const data = globalDisplayMode ? selectedCountries : [];
 
   return (
     <div
@@ -24,10 +25,11 @@ const TimeSeriesMode = () => {
     >
       <Filter
         globalDisplayMode={globalDisplayMode}
-        setVisibleWorldStat={checked => setVisibleWorldStat(checked)}
-        visibleWorldStat={visibleWorldStat}
         globalData={globalData}
         exportSelectedCountries={setSelectedCountries}
+      />
+      <Chart
+        data={data}
       />
     </div>
   );

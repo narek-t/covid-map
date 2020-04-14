@@ -4,8 +4,6 @@ import './Filter.scss';
 
 interface Props {
   globalDisplayMode: boolean;
-  visibleWorldStat: boolean;
-  setVisibleWorldStat: (checked: boolean) => void;
   globalData: TransformedData[] | null;
   exportSelectedCountries: (data: TransformedData[] | []) => void;
 }
@@ -13,16 +11,12 @@ interface Props {
 const Filter = (props: Props) => {
   const {
     globalDisplayMode,
-    visibleWorldStat,
-    setVisibleWorldStat,
     globalData,
     exportSelectedCountries,
   } = props;
 
   return globalDisplayMode ? (
     <GlobalFilter
-      visibleWorldStat={visibleWorldStat}
-      setVisibleWorldStat={setVisibleWorldStat}
       globalData={globalData}
       exportSelectedCountries={exportSelectedCountries}
     />
