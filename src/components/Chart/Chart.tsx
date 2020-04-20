@@ -11,20 +11,23 @@ interface State {
 }
 
 class Chart extends React.PureComponent<Props, State> {
+  // @ts-ignore
+  Chart: ChartBuilder;
 
-  Map: ChartBuilder;
-
-  containerNode: React.RefObject<HTMLDivElement> = React.createRef();
+  containerNode: React.RefObject<HTMLCanvasElement> = React.createRef();
 
   componentDidMount() {
     const containerNode = this.containerNode.current;
     if (containerNode) {
-      const { data } = this.props;
       this.Chart = new ChartBuilder({
         containerNode,
-        data,
       });
     }
+  }
+
+  componentDidUpdate() {
+    const { data } = this.props;
+    if (this.Chart) this.Chart.update(data);
   }
 
   render() {
@@ -32,7 +35,7 @@ class Chart extends React.PureComponent<Props, State> {
     if (!data) return null;
 
     return (
-      <div
+      <canvas
         className="chart"
         ref={this.containerNode}
       />
