@@ -21,3 +21,5 @@ interface TransformedData {
 interface USDataList {
   [key: string]: TransformedData[];
 }
+
+type ViewMode = 'confirmed' | 'deaths' | 'recovered';
