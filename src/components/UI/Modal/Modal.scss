@@ -17,7 +17,8 @@
     position: relative;
     z-index: 1;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
+    height: 400px;
   }
   &-close {
     position: absolute;
@@ -31,10 +32,6 @@
   }
   @media screen and (max-width: 700px) {
     padding: 0;
-    &__inner {
-      height: 400px;
-      padding: 10px;
-    }
   }
 }
 
