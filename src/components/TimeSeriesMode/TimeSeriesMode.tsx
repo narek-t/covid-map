@@ -13,9 +13,7 @@ const TimeSeriesMode = () => {
     usData,
   } = state;
 
-  const [selectedCountries, setSelectedCountries] = useState<TransformedData[]>([]);
-
-  const data = globalDisplayMode ? selectedCountries : [];
+  const [selectedSubjects, setSelectedSubjects] = useState<TransformedData[]>([]);
 
   return (
     <div
@@ -26,10 +24,12 @@ const TimeSeriesMode = () => {
       <Filter
         globalDisplayMode={globalDisplayMode}
         globalData={globalData}
-        exportSelectedCountries={setSelectedCountries}
+        usData={usData}
+        exportSelectedSubjects={setSelectedSubjects}
       />
       <Chart
-        data={data}
+        data={selectedSubjects}
+        globalDisplayMode={globalDisplayMode}
       />
     </div>
   );

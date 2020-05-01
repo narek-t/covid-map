@@ -1,0 +1,31 @@
+.modal {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 0 20px;
+  box-sizing: border-box;
+  &__inner {
+    max-width: 1000px;
+    width: 100%;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: .75);
+}

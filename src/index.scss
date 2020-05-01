@@ -5,12 +5,14 @@ body {
   sans-serif;
   font-size: 16px;
   color: #1f2667;
+  background: #f5f6f7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   height: 100vh;
+  display: flex;
 }
 
 // FIXME Remove this on production

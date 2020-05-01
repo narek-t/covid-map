@@ -2,12 +2,13 @@
   height: 50px;
   background: #fff;
   display: flex;
+  flex: 0 0 50px;
   justify-content: space-between;
   padding: 0 30px;
   box-sizing: border-box;
   align-items: center;
   box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
-  z-index: 9999;
+  z-index: 1000;
   &__logo {
     font: 500 italic 30px 'Work Sans';
   }

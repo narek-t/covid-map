@@ -57,24 +57,25 @@ const LEGEND = {
   },
 };
 
-const TITLE = {
-  display: true,
-  text: 'Click on subject name for details.',
-};
-
 interface Config {
   containerNode: HTMLCanvasElement;
-  openDetails: (name: string) => void;
-  viewMode: ViewMode;
+  viewMode?: ViewMode;
+  openDetails?: (name: string) => void;
+  subjectName?: string;
 }
 
 class ChartBuilder {
   private chart: Chart;
 
-  private viewMode: ViewMode;
+  private viewMode?: ViewMode;
 
   constructor(config: Config) {
-    const { containerNode, openDetails, viewMode } = config;
+    const {
+      containerNode,
+      openDetails,
+      viewMode,
+      subjectName,
+    } = config;
     this.viewMode = viewMode;
     this.chart = new Chart(containerNode, {
       type: CHART_TYPE,
@@ -82,7 +83,10 @@ class ChartBuilder {
         tooltips: {
           ...TOOLTIP,
           callbacks: {
-            title: tooltipItems => `${_.capitalize(this.viewMode)}: ${tooltipItems[0].xLabel}`,
+            title: tooltipItems => {
+              const beforeTitle = viewMode ? _.capitalize(this.viewMode) : subjectName;
+              return `${beforeTitle}: ${tooltipItems[0].xLabel}`;
+            },
             label: (tooltipItem, data) => {
               const name = data.datasets && data.datasets[tooltipItem.datasetIndex || 0].label;
               return `${name}: ${numberWithCommas(Number(tooltipItem.value))}`;
@@ -93,16 +97,28 @@ class ChartBuilder {
         plugins: PLUGINS,
         legend: {
           ...LEGEND,
-          onClick: (_$, legend) => {
-            openDetails(legend.text || '');
+          ...(openDetails) && {
+            onClick: (_$, legend) => {
+              openDetails(legend.text || '');
+            },
           },
         },
-        title: TITLE,
+        title: {
+          text: viewMode ? 'Click on subject name for details.' : subjectName,
+          display: true,
+        },
       },
     });
   }
 
-  update = (data: TransformedData[] | [], viewMode: ViewMode) => {
+  update = (data: TransformedData[] | [], viewMode?: ViewMode) => {
+    if (viewMode) {
+      return this.updateGlobalChart(data, viewMode);
+    }
+    return this.updateRegularChart(data);
+  };
+
+  updateGlobalChart = (data: TransformedData[] | [], viewMode: ViewMode) => {
     this.viewMode = viewMode;
     this.chart.data = {
       datasets: _.map(data, item => ({
@@ -111,8 +127,44 @@ class ChartBuilder {
       })),
       labels: _.map(data[0] && data[0].timeSeries, time => time.date),
     };
+    return this.chart.update();
+  };
 
-    this.chart.update();
+  getColors = (key: string) => {
+    switch (key) {
+      case 'confirmed':
+        return '#f28e2b';
+      case 'deaths':
+        return '#e15758';
+      default:
+        return '#59a14f';
+    }
+  };
+
+  getLineStyle = (key: string) => {
+    const color = this.getColors(key);
+    return {
+      borderColor: color,
+      pointBackgroundColor: color,
+      pointBorderColor: color,
+      pointHoverBackgroundColor: color,
+      pointHoverBorderColor: color,
+    };
+  };
+
+  updateRegularChart = (data: TransformedData[] | []) => {
+    const [{ timeSeries }] = data;
+    const keys = _.filter(_.keys(timeSeries[0]), k => k !== 'date') as ViewMode[];
+
+    this.chart.data = {
+      datasets: _.map(keys, key => ({
+        label: _.capitalize(key),
+        data: _.map(timeSeries, time => time[key]),
+        ...this.getLineStyle(key),
+      })),
+      labels: _.map(timeSeries, time => time.date),
+    };
+    return this.chart.update();
   };
 }
 

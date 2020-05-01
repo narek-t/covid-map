@@ -13,7 +13,6 @@ const Tabs = (props: Props) => {
   const { data, onChange, activeTab } = props;
   const keys = _.filter(_.keys(data?.timeSeries[0]), k => k !== 'date');
 
-
   return (
     <div className="tabs">
       {_.map(keys, key => (

@@ -9,8 +9,10 @@
     "project": "tsconfig.json",
     "tsconfigRootDir": "."
   },
-  "plugins": ["react", "sonarjs", "prefer-arrow"],
+  "plugins": ["react", "sonarjs", "prefer-arrow", "react-hooks"],
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [0],
     "react/jsx-one-expression-per-line": [0],
     "react/state-in-constructor": [0],
