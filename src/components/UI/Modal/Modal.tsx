@@ -15,6 +15,10 @@ const element = document.getElementById('modal-hook') as HTMLDivElement;
 
 const Modal = (props: Props) => {
   const { className, children, onClose } = props;
+  const closeHandler = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onClose();
+  };
   const content = (
     <div
       className={classnames(
@@ -22,8 +26,9 @@ const Modal = (props: Props) => {
         className,
       )}
     >
-      <div className="backdrop" onClick={onClose} />
+      <div className="backdrop" onClick={e => closeHandler(e)} />
       <div className="modal__inner">
+        <button className="modal-close" onClick={e => closeHandler(e)}>X</button>
         {children}
       </div>
     </div>

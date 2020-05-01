@@ -80,6 +80,7 @@ class ChartBuilder {
     this.chart = new Chart(containerNode, {
       type: CHART_TYPE,
       options: {
+        maintainAspectRatio: false,
         tooltips: {
           ...TOOLTIP,
           callbacks: {

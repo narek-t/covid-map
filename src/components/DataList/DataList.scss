@@ -23,6 +23,11 @@
     &-recovered {
       color: green;
     }
+    @media screen and (max-width: 700px) {
+      div {
+        font-size: 12px;
+      }
+    }
   }
   &:hover, &.selected {
     background: #f5f6f7;

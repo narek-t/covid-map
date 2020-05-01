@@ -68,10 +68,10 @@ class MapBuilder {
   ) => L.popup()
     .setContent(
       `<div class="popup-country-name">${this.config.globalDisplayMode ? subject.name : subject.combinatedName}</div>
-      ${!this.config.globalDisplayMode ? `<div class="data-item__stats-recovered">Population: ${numberWithCommas(Number(subject.population))}</div>` : ''}
-      <div class="data-item__stats-confirmed">Confirmed: ${extractCases([totalConfirmed, diff])}</div>
-      <div class="data-item__stats-deaths">Deaths: ${extractCases(getTotalCases(subject.timeSeries, 'deaths'))}</div>
-      ${this.config.globalDisplayMode ? `<div class="data-item__stats-recovered">Recovered: ${extractCases(getTotalCases(subject.timeSeries, 'recovered'))}</div>` : ''}`,
+      ${!this.config.globalDisplayMode ? `<div class="data-item__stats data-item__stats-recovered">Population: ${numberWithCommas(Number(subject.population))}</div>` : ''}
+      <div class="data-item__stats data-item__stats-confirmed">Confirmed: ${extractCases([totalConfirmed, diff])}</div>
+      <div class="data-item__stats data-item__stats-deaths">Deaths: ${extractCases(getTotalCases(subject.timeSeries, 'deaths'))}</div>
+      ${this.config.globalDisplayMode ? `<div class="data-item__stats data-item__stats-recovered">Recovered: ${extractCases(getTotalCases(subject.timeSeries, 'recovered'))}</div>` : ''}`,
     );
 
   createMarkers = (data: TransformedData[] | null) => {
