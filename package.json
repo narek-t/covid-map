@@ -1,5 +1,5 @@
 {
-  "name": "react-typescript-sass-boilerbplate",
+  "name": "covid-stats",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -27,6 +27,7 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-ios-pwa-prompt": "^1.7.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "typescript": "^3.7.5"

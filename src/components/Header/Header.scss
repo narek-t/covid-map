@@ -9,6 +9,9 @@
     display: none;
     font: 500 italic 20px 'Work Sans';
   }
+  &-mobile__install {
+    display: none;
+  }
   &-mobile__button {
     display: none;
     cursor: pointer;
@@ -70,6 +73,9 @@
     justify-content: space-between;
     align-items: center;
     z-index: 99999999;
+    &-mobile__install.visible {
+      display: block;
+    }
     &__inner {
       position: absolute;
       transform-origin: 0% 0%;
