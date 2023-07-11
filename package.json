@@ -23,13 +23,13 @@
     "d3": "^5.15.1",
     "leaflet": "^1.6.0",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
+    "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ios-pwa-prompt": "^1.7.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "typescript": "^3.7.5"
   },
   "scripts": {
